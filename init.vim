@@ -1,19 +1,11 @@
-" Read file when modified outside of Neovim
 set autoread
-
-"
 set nobackup
 set noswapfile
-
 set ruler
-
-" Ignore cases when searching
-
 set incsearch
 
-" syntax enable
-" syntax on
-" set background=light
+syntax enable
+syntax on
 
 set path=**
 
