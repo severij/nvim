@@ -27,8 +27,11 @@ let g:ale_linters = {
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'w0rp/ale'
 Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'w0rp/ale'
+Plug 'tpope/vim-surround'
+Plug 'ctrlpvim/ctrlp.vim'
+
 
 call plug#end()
