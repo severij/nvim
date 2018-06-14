@@ -1,49 +1,51 @@
-
-call plug#begin('~/.config/nvim/plugged')
-
-Plug 'donRaphaco/neotex', { 'for': 'tex' }
-Plug 'honza/vim-snippets'
-Plug 'itchyny/lightline.vim'
-Plug 'justinmk/vim-sneak'
-Plug 'sirver/ultisnips'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
-Plug 'vim-scripts/Vimchant'
-Plug 'w0rp/ale'
-
-call plug#end()
-
 set number
 set ignorecase
 set smartindent
 set tabstop=8           
 set softtabstop=4       
 set shiftwidth=4
-set expandtab           
+set expandtab
 
-let g:sneak#label = 1
-let g:sneak#s_next = 1
-let g:sneak#use_ic_scs = 1
-let g:sneak#target_labels = "ghfjdkslHGJFKDLSyturiebvncmx"
+set incsearch
+set hlsearch
 
-let g:neotex_enabled=1
+set path+=**
+set wildmenu
+
+highlight ColorColumn ctermbg=red
+call matchadd('ColorColumn', '\%81v', 100)
 
 " Escape terminal with Esc
 tnoremap <Esc> <C-\><C-n>
 
-" Controlling buffers
-nnoremap <C-b>j :bn<cr>
-nnoremap <C-b>k :bp<cr>
-nnoremap <C-b><C-j> :bn<cr>
-nnoremap <C-b><C-j> :bp<cr>
+let g:LanguageClient_autoStart = 1
+let g:LanguageClient_serverCommands = {
+    \ 'python': ['pyls'],
+    \ }
 
-" Controlling tabs
-nnoremap <C-t>n :tabnew<cr>
-nnoremap <C-t>c :tabclose<cr>
-nnoremap <C-t>l :tabnext<cr>
-nnoremap <C-t>h :tabprevious<cr>
-nnoremap <C-t><C-n> :tabnew<cr>
-nnoremap <C-t><C-c> :tabclose<cr>
-nnoremap <C-t><C-l> :tabnext<cr>
-nnoremap <C-t><C-h> :tabprevious<cr>
+let g:deoplete#enable_at_startup = 1
 
+nnoremap <leader>r :call LanguageClient#textDocument_rename()<cr>
+nnoremap <leader>i :call LanguageClient#textDocument_hover()<cr>
+nnoremap <leader>f :call LanguageClient#textDocument_formatting()<cr>
+
+imap <C-j>     <Plug>(neosnippet_expand_or_jump)
+smap <C-j>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-j>     <Plug>(neosnippet_expand_target)
+
+xmap <leader>a <Plug>(EasyAlign)
+nmap <leader>a <Plug>(EasyAlign)
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+Plug 'itchyny/lightline.vim'
+Plug 'junegunn/vim-easy-align'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
+
+call plug#end()
