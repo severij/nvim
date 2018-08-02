@@ -1,4 +1,4 @@
-set number
+set relativenumber
 set ignorecase
 set smartindent
 set tabstop=8           
