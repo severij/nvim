@@ -10,21 +10,21 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ }
 Plug 'fenetikm/falcon'
 Plug 'itchyny/lightline.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'tpope/vim-fugitive'
-Plug 'scrooloose/nerdcommenter'
-Plug 'justinmk/vim-sneak'
+Plug 'tpope/vim-commentary'
+Plug 'sjl/gundo.vim'
 
 call plug#end()
 
-"==============================================================================
+"------------------------------------------------------------------------------
 "                              General Settings
-"==============================================================================
+"------------------------------------------------------------------------------
 
 set relativenumber
 set ignorecase
@@ -60,23 +60,68 @@ let g:LanguageClient_serverCommands = {
 
 let g:deoplete#enable_at_startup = 1
 
-let g:sneak#label = 1
-
-"==============================================================================
+"------------------------------------------------------------------------------
 "                                  Mappings
-"==============================================================================
+"------------------------------------------------------------------------------
 
-" Escape terminal with Esc
+" Terminal
 tnoremap <Esc> <C-\><C-n>
+nnoremap <silent> <c-s>s     :terminal<cr>i
+nnoremap <silent> <c-s><c-s> :terminal<cr>i
+nnoremap <silent> <c-s>h     <c-w>v:terminal<cr>i
+nnoremap <silent> <c-s><c-h> <c-w>v:terminal<cr>i
+nnoremap <silent> <c-s>j     <c-w>s<c-w>j:terminal<cr>i
+nnoremap <silent> <c-s><c-j> <c-w>s<c-w>j:terminal<cr>i
+nnoremap <silent> <c-s>k     <c-w>s:terminal<cr>i
+nnoremap <silent> <c-s><c-k> <c-w>s:terminal<cr>i
+nnoremap <silent> <c-s>l     <c-w>v<c-w>l:terminal<cr>i
+nnoremap <silent> <c-s><c-l> <c-w>v<c-w>l:terminal<cr>i
+tnoremap <silent> <c-s>h     <c-\><c-n><c-w>v:terminal<cr>i
+tnoremap <silent> <c-s><c-h> <c-\><c-n><c-w>v:terminal<cr>i
+tnoremap <silent> <c-s>j     <c-\><c-n><c-w>s<c-w>j:terminal<cr>i
+tnoremap <silent> <c-s><c-j> <c-\><c-n><c-w>s<c-w>j:terminal<cr>i
+tnoremap <silent> <c-s>k     <c-\><c-n><c-w>s:terminal<cr>i
+tnoremap <silent> <c-s><c-k> <c-\><c-n><c-w>s:terminal<cr>i
+tnoremap <silent> <c-s>l     <c-\><c-n><c-w>v<c-w>l:terminal<cr>i
+tnoremap <silent> <c-s><c-l> <c-\><c-n><c-w>v<c-w>l:terminal<cr>i
 
-nnoremap <silent> <c-f> :Files<cr>
+" Windows
+nnoremap <silent> <c-w>d     :q<cr>
+nnoremap <silent> <c-w><c-d> :q<cr>
 
+" Buffers
+nnoremap <silent> <c-b>n     :ene<cr>
+nnoremap <silent> <c-b><c-n> :ene<cr>
 nnoremap <silent> <c-b>d     :bd<cr>
 nnoremap <silent> <c-b><c-d> :bd<cr>
 nnoremap <silent> <c-b>b     :bn<cr>
 nnoremap <silent> <c-b><c-b> :bn<cr>
-nnoremap <silent> <c-b>l     :BLines<cr>
-nnoremap <silent> <c-b><c-l> :BLines<cr>
+nnoremap <silent> <c-b>B     :bp<cr>
+nnoremap <silent> <c-b>o     :%bd<cr><c-o>
+nnoremap <silent> <c-b><c-o> :%bd<cr><c-o>
+
+" Tabs
+nnoremap <silent> <c-t>n     :tabe<cr>
+nnoremap <silent> <c-t><c-n> :tabe<cr>
+nnoremap <silent> <c-t>d     :tabc<cr>
+nnoremap <silent> <c-t><c-d> :tabc<cr>
+nnoremap <silent> <c-t>t     :tabn<cr>
+nnoremap <silent> <c-t><c-t> :tabn<cr>
+nnoremap <silent> <c-t>T     :tabp<cr>
+nnoremap <silent> <c-t>o     :tabo<cr>
+nnoremap <silent> <c-t><c-o> :tabo<cr>
+nnoremap <silent> <c-t>h     :tabm -<cr>
+nnoremap <silent> <c-t><c-h> :tabm -<cr>
+nnoremap <silent> <c-t>l     :tabm +<cr>
+nnoremap <silent> <c-t><c-l> :tabm +<cr>
+nnoremap <silent> <c-t>g     :tabs<cr>:tabn call getchar()<cr>
+
+
+nnoremap <c-b>l     :BLines<cr>
+nnoremap <c-b><c-l> :BLines<cr>
+
+nnoremap <silent> <c-f> :Files<cr>
+
 
 nnoremap <leader>r :call LanguageClient#textDocument_rename()<cr>
 nnoremap <leader>i :call LanguageClient#textDocument_hover()<cr>
@@ -89,6 +134,9 @@ xmap <C-j> <Plug>(neosnippet_expand_target)
 nmap <leader>a <Plug>(EasyAlign)
 xmap <leader>a <Plug>(EasyAlign)
 
+" Gundo
+nnoremap <silent> <leader>u :GundoToggle<cr>
+
 " Git
 nnoremap <silent> <leader>gs :Gtatus<cr>
 nnoremap <silent> <leader>gc :Gcommit<cr>
@@ -96,6 +144,4 @@ nnoremap <silent> <leader>gl :Glog<cr>
 nnoremap <silent> <leader>gp :Gpull<cr>
 nnoremap <silent> <leader>gP :Gpush<cr>
 
-" Terminal
-nmap <leader>t :terminal<cr>
 
