@@ -38,6 +38,8 @@ set hlsearch
 set path+=**
 set wildmenu
 
+au TermOpen * setlocal nonumber norelativenumber bufhidden=hide
+
 let mapleader = " "
 
 set termguicolors
