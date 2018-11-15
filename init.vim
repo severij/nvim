@@ -1,6 +1,28 @@
-"==============================================================================
-"                                  Plugins
-"==============================================================================
+"----------------------------- General Settings --------------------------------
+
+set expandtab
+set hlsearch
+set ignorecase
+set incsearch
+set path+=**
+set relativenumber
+set shiftwidth=4
+set smartindent
+set softtabstop=4       
+set tabstop=8           
+set textwidth=80
+set wildmenu
+
+au TermOpen * setlocal nonumber norelativenumber bufhidden=hide
+
+let mapleader = " "
+
+set termguicolors
+colorscheme falcon
+
+let g:python3_host_prog = "/usr/bin/python3"
+
+"----------------------------------- Plugins -----------------------------------
 
 call plug#begin('~/.vim/plugged')
 
@@ -18,34 +40,7 @@ Plug 'tpope/vim-commentary'
 
 call plug#end()
 
-"------------------------------------------------------------------------------
-"                              General Settings
-"------------------------------------------------------------------------------
-
-set relativenumber
-set ignorecase
-set smartindent
-set tabstop=8           
-set softtabstop=4       
-set shiftwidth=4
-set expandtab
-set incsearch
-set hlsearch
-set path+=**
-set wildmenu
-
-au TermOpen * setlocal nonumber norelativenumber bufhidden=hide
-
-let mapleader = " "
-
-set termguicolors
-colorscheme falcon
-
-let g:python3_host_prog = "/usr/bin/python3"
-
-"==============================================================================
-"                               Plugin Settings
-"==============================================================================
+"------------------------------ Plugin Settings --------------------------------
 
 " Theme settings
 let g:falcon_background = 1
@@ -60,9 +55,7 @@ let g:LanguageClient_serverCommands = {
 
 let g:deoplete#enable_at_startup = 1
 
-"------------------------------------------------------------------------------
-"                                  Mappings
-"------------------------------------------------------------------------------
+"--------------------------------- Mappings ------------------------------------
 
 " Terminal
 tnoremap <Esc> <C-\><C-n>
@@ -115,13 +108,6 @@ nnoremap <silent> <c-t><c-h> :tabm -<cr>
 nnoremap <silent> <c-t>l     :tabm +<cr>
 nnoremap <silent> <c-t><c-l> :tabm +<cr>
 nnoremap <silent> <c-t>g     :tabs<cr>:tabn call getchar()<cr>
-
-
-nnoremap <c-b>l     :BLines<cr>
-nnoremap <c-b><c-l> :BLines<cr>
-
-nnoremap <silent> <c-f> :Files<cr>
-
 
 nnoremap <leader>r :call LanguageClient#textDocument_rename()<cr>
 nnoremap <leader>i :call LanguageClient#textDocument_hover()<cr>
