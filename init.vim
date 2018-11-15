@@ -1,3 +1,21 @@
+"----------------------------------- Plugins -----------------------------------
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+Plug 'fenetikm/falcon'
+Plug 'itchyny/lightline.vim'
+Plug 'junegunn/vim-easy-align'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'tpope/vim-commentary'
+
+call plug#end()
+
 "----------------------------- General Settings --------------------------------
 
 set expandtab
@@ -21,24 +39,6 @@ set termguicolors
 colorscheme falcon
 
 let g:python3_host_prog = "/usr/bin/python3"
-
-"----------------------------------- Plugins -----------------------------------
-
-call plug#begin('~/.vim/plugged')
-
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-Plug 'fenetikm/falcon'
-Plug 'itchyny/lightline.vim'
-Plug 'junegunn/vim-easy-align'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
-Plug 'tpope/vim-commentary'
-
-call plug#end()
 
 "------------------------------ Plugin Settings --------------------------------
 
