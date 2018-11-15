@@ -10,15 +10,11 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ }
 Plug 'fenetikm/falcon'
 Plug 'itchyny/lightline.vim'
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-" Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
-Plug 'sjl/gundo.vim'
 
 call plug#end()
 
@@ -137,15 +133,3 @@ xmap <C-j> <Plug>(neosnippet_expand_target)
 
 nmap <leader>a <Plug>(EasyAlign)
 xmap <leader>a <Plug>(EasyAlign)
-
-" Gundo
-nnoremap <silent> <leader>u :GundoToggle<cr>
-
-" Git
-nnoremap <silent> <leader>gs :Gtatus<cr>
-nnoremap <silent> <leader>gc :Gcommit<cr>
-nnoremap <silent> <leader>gl :Glog<cr>
-nnoremap <silent> <leader>gp :Gpull<cr>
-nnoremap <silent> <leader>gP :Gpush<cr>
-
-
